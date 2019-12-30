@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>
+        <ui:insert name="title">CAERS ASCII 2004</ui:insert>
+    </title>
+</h:head>
+
+<h:body>
+    <h:form id="formList" prependId="false">
+        <div class="ui-g">
+            <div class="ui-g-12">
+                <p:button value="Back" outcome="/index.xhtml" icon="pi pi-arrow-left"/>
+            </div>
+            <div class="ui-g-12">
+                <h1>Records Not Submitted</h1>
+                <p>*Problems with validations</p>
+            </div>
+            <div class="ui-g-12">
+                <p:dataTable id="list" value="#{caersController.listInactiveRecords()}" var="caers" lazy="true"
+                             paginator="true" widgetVar="list" reflow="true" style="font-size: 10px;"
+                             rows="50" styleClass="paginated">
+
+                    <f:facet name="header">
+                        <div class="ui-g">
+                            <div class="ui-g-6" align="left">
+                                <h:outputText value="Search all fields:  "/>
+                                <p:inputText id="globalFilter" onkeyup="PF('list').filter();"
+                                             placeholder="Enter keyword"/>
+                            </div>
+                            <div class="ui-g-6" align="right">
+                                <h:outputText style="font-size: 12px;"
+                                              value="#{caersController.listInactiveRecords().size()} record(s)"/>
+                            </div>
+                        </div>
+                    </f:facet>
+
+                    <p:column headerText="RA_Report #" width="6%" style="text-align: left;">
+                        <h:outputText value="#{caers.RA_Report}"/>
+                    </p:column>
+
+                    <p:column headerText="RA_CAERS Created Date" style="text-align: left;">
+
+                        <h:outputText value="#{caers.RA_CAERS_Created_Date}">
+                            <f:convertDateTime pattern="dd/MM/yyyy"/>
+                        </h:outputText>
+                    </p:column>
+
+                    <p:column headerText="AEC_Even Start Date" style="text-align: left;">
+
+                        <h:outputText value="#{caers.AEC_Even_Start_Date}">
+                            <f:convertDateTime pattern="dd/MM/yyyy"/>
+                        </h:outputText>
+                    </p:column>
+
+                    <p:column headerText="PRI_Product Role" style="text-align: left;">
+                        <h:outputText value="#{caers.PRI_Product_Role}"/>
+                    </p:column>
+
+                    <p:column headerText="PRI_Reported Brand/Product Name" width="20%" style="text-align: left;">
+                        <h:outputText value="#{caers.PRI_Reported_Brand_Product_Name}"/>
+                    </p:column>
+
+                    <p:column headerText="PRI_FDA Industry Code" style="text-align: left;">
+                        <h:outputText value="#{caers.PRI_FDA_Industry_Code}"/>
+                    </p:column>
+
+                    <p:column headerText="PRI_FDA Industry Name" style="text-align: left;">
+                        <h:outputText value="#{caers.PRI_FDA_Industry_Name}"/>
+                    </p:column>
+
+                    <p:column headerText="CI_Age At Adverse Event" style="text-align: left;">
+                        <h:outputText value="#{caers.CI_Age_At_Adverse_Event}"/>
+                    </p:column>
+
+                    <p:column headerText="CI_Age Unit" style="text-align: left;">
+                        <h:outputText value="#{caers.CI_Age_Unit}"/>
+                    </p:column>
+
+                    <p:column headerText="CI_Gender" style="text-align: left;">
+                        <h:outputText value="#{caers.CI_Gender}"/>
+                    </p:column>
+
+                    <p:column headerText="AEC_One Row Outcomes" style="text-align: left;">
+                        <h:outputText value="#{caers.AEC_One_Row_Outcomes}"/>
+                    </p:column>
+
+                    <p:column headerText="SYM_One Row Coded Symptoms" style="text-align: left;">
+                        <h:outputText value="#{caers.SYM_One_Row_Coded_Symptoms}"/>
+                    </p:column>
+                </p:dataTable>
+            </div>
+        </div>
+    </h:form>
+</h:body>
+</html>

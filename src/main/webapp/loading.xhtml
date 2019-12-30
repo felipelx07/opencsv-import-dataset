@@ -1,0 +1,15 @@
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui">
+
+    <p:dialog id="loadingDlg" widgetVar="loadingDlg" closable="false"
+              showHeader="false" draggable="false" modal="true" style="text-align: center">
+        <h:outputText value="Loading..." style="font-size: 14px;"/>
+        <br/>
+        <h:outputText value="*May take a long time" style="font-size: 9px;"/>
+        <br/>
+        <i class="pi pi-spin pi-spinner" style="font-size: 3em"></i>
+    </p:dialog>
+</ui:composition>

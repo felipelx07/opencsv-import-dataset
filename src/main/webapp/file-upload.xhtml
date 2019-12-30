@@ -1,0 +1,41 @@
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui">
+
+    <div class="ui-g">
+        <div class="ui-g-6">
+            <h1>Upload Dataset</h1>
+            <p>*Only .csv files...</p>
+            <h:form prependId="false">
+                <p:messages id="messages" showDetail="false" closable="true">
+                    <p:autoUpdate/>
+                </p:messages>
+            </h:form>
+        </div>
+        <div class="ui-g-6" align="right">
+            <br/>
+            <br/>
+            <br/>
+            <p:button value="View Logs" outcome="/logs.xhtml" icon="pi pi-file"/>
+            <p:button value="Not Submitted" outcome="/not-submitted.xhtml" icon="pi pi-ban"/>
+        </div>
+        <div class="ui-g-12">
+            <h:form id="fileUploadForm" enctype="multipart/form-data" prependId="false">
+                <p:panel header="File Upload">
+                    <p:commandButton id="vButton" style="margin: 5px 0;" value="Put Validations"
+                                     onclick="PF('validationsDlg').show()"
+                                     update="validationsTable" icon="pi pi-pencil"/>
+                    <br/>
+                    <p:fileUpload value="#{caersController.file}" mode="simple" skinSimple="true" label="Choose File"
+                                  onAdd="document.getElementById('submitB').click()"/>
+                    <br/>
+                    <p:commandButton id="submitB" value="Upload" ajax="false" onclick="PF('loadingDlg').show()"
+                                     update="validationsTable"
+                                     action="#{caersController.upload}" icon="pi pi-refresh"/>
+                </p:panel>
+            </h:form>
+        </div>
+    </div>
+</ui:composition>

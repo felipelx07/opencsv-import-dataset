@@ -1,0 +1,79 @@
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui">
+
+    <h:form prependId="false">
+        <p:remoteCommand name="saveValidation" action="#{validationController.update}"/>
+
+        <p:dialog id="validationsDlg" widgetVar="validationsDlg" closable="true" position="top"
+                  header="Validation Parameters" width="60%"
+                  draggable="false" modal="true" style="text-align: center">
+
+            <p:dataTable id="validationsTable" var="validation"
+                         value="#{caersController.validations}"
+                         style="font-size: 10px;">
+
+                <p:column headerText="Field Name">
+                    <h:outputText value="#{validation.field}"/>
+                </p:column>
+
+                <p:column headerText="Accept Null" width="10%">
+                    <p:selectBooleanButton value="#{validation.acceptNull}" onLabel="Yes"
+                                           offLabel="No"
+                                           style="width:60px">
+                        <p:ajax event="change" process="@form" oncomplete="saveValidation([
+                                               {name:'id_validation', value:'#{validation.id}'},
+                                           {name:'column_name', value:'acceptNull'},
+                                           {name:'column_value', value:'#{validation.acceptNull}'}])"/>
+                    </p:selectBooleanButton>
+                </p:column>
+
+                <p:column headerText="Accept Special Characters" width="10%">
+                    <p:selectBooleanButton value="#{validation.acceptSpecialCharacters}" onLabel="Yes"
+                                           offLabel="No"
+                                           style="width:60px">
+                        <p:ajax event="change" process="@form" oncomplete="saveValidation([
+                                               {name:'id_validation', value:'#{validation.id}'},
+                                           {name:'column_name', value:'acceptSpecialCharacters'},
+                                           {name:'column_value', value:'#{validation.acceptSpecialCharacters}'}])"/>
+                    </p:selectBooleanButton>
+                </p:column>
+
+                <p:column headerText="Accept 'Not Available'" width="10%">
+                    <p:selectBooleanButton value="#{validation.acceptNotAvailable}" onLabel="Yes"
+                                           offLabel="No"
+                                           style="width:60px">
+                        <p:ajax event="change" process="@form" oncomplete="saveValidation([
+                                               {name:'id_validation', value:'#{validation.id}'},
+                                           {name:'column_name', value:'acceptNotAvailable'},
+                                           {name:'column_value', value:'#{validation.acceptNotAvailable}'}])"/>
+                    </p:selectBooleanButton>
+                </p:column>
+
+                <p:column headerText="Only Numbers" width="10%">
+                    <p:selectBooleanButton value="#{validation.onlyNumbers}" onLabel="Yes"
+                                           offLabel="No"
+                                           style="width:60px">
+                        <p:ajax event="change" process="@form" oncomplete="saveValidation([
+                                               {name:'id_validation', value:'#{validation.id}'},
+                                           {name:'column_name', value:'onlyNumbers'},
+                                           {name:'column_value', value:'#{validation.onlyNumbers}'}])"/>
+                    </p:selectBooleanButton>
+                </p:column>
+
+                <p:column headerText="Only Date" width="10%">
+                    <p:selectBooleanButton value="#{validation.onlyDate}" onLabel="Yes"
+                                           offLabel="No"
+                                           style="width:60px">
+                        <p:ajax event="change" process="@form" oncomplete="saveValidation([
+                                               {name:'id_validation', value:'#{validation.id}'},
+                                           {name:'column_name', value:'onlyDate'},
+                                           {name:'column_value', value:'#{validation.onlyDate}'}])"/>
+                    </p:selectBooleanButton>
+                </p:column>
+            </p:dataTable>
+        </p:dialog>
+    </h:form>
+</ui:composition>

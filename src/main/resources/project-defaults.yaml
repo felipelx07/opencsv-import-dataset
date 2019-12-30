@@ -1,0 +1,29 @@
+swarm:
+  undertow:
+    servers:
+      default-server:
+        http-listeners:
+          default:
+            max-post-size: 2147483648
+  datasources:
+    data-sources:
+      PostgresDS:
+        driver-name: postgresql
+        connection-url: "jdbc:postgresql://localhost:5432/caers"
+        user-name: caers
+        password: caers
+  logging:
+    pattern-formatters:
+      COLOR_PATTERN:
+        pattern: "LOGGING: %p [%c] %s%e%n"
+    periodic-rotating-file-handlers:
+      FILE:
+        file:
+          path: target/log/server.log
+        suffix: .yyyy-MM-dd
+        named-formatter: COLOR_PATTERN
+        level: ERROR
+    root-logger:
+      handlers:
+        - CONSOLE
+        - FILE

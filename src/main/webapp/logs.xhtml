@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>
+        <ui:insert name="title">CAERS ASCII 2004</ui:insert>
+    </title>
+</h:head>
+
+<h:body>
+    <div id="settingsdiv" style="width:350px; height:400px; position:absolute;  background-color:r; top:20px; left:1px">
+        <div id="settingsHashMap"
+             style="width:1050px; height:400px; position:absolute;  background-color:r; top:20px; left:1px">
+            <h:form id="form">
+                <p:growl id="growl" showDetail="true" sticky="true"/>
+                <p:button value="Back" outcome="/index.xhtml" icon="pi pi-arrow-left"/>
+                <p:commandButton value="Show next #{serverLog.pageSize} lines" update="@form"
+                                 action="#{serverLog.actionNextPage}"/>
+                <br/><br/>
+                <p:inputTextarea rows="30" cols="1000" value="#{serverLog.data}" readonly="true"/>
+            </h:form>
+        </div>
+    </div>
+</h:body>
+</html>
